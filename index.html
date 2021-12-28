@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Teste 01</title>
+</head>
+<body>
+	<header>
+		<img class="logo" id="img-logo" src="img/D-logo.png" width=200 height=125>
+		<div class="nav">
+				<a href="">Home</a>
+				<a href="">Blog</a>
+				<a href="">FAQ</a>
+				<a href="">About</a>
+				<a href="">Info</a>
+				<a href="">Tricks</a>
+				<a href="">LOGIN</a>
+		</div>
+	</header>
+	<main>
+		<form action="http://localhost:8080/testes/teste01/php/index.php" method="post">
+			
+			<div class="main">
+				<h1>Informações Pessoais</h1>
+				<p>Preencha os campos com suas informações pessoais.</p>
+				<p>Para os campos de documentação, digite somente números.</p>
+					<div class="input-data">
+						<input type="text" name="nome" placeholder="Ex.: David" required>
+						<label>Nome</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" name="email" placeholder="Ex.: me@example.com" required>
+						<label>Email</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" name="nascimento" placeholder="dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="on" required>
+						<label>Data de Nascimento</label><br/>
+						<div class="underline"></div>
+
+						<input type="password" name="senha" placeholder="Ex.: jYhk_#32*%f9Wc14;a" required>
+						<label>Senha</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" id="CelularInput" name="celular" maxlength="11" placeholder="Ex.: (81) 98899-8899" oninput="criaMascara('Celular')" required>
+						<label>Celular</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" id="CPFInput" name="cpf" placeholder="030.002.004-02" maxlength="11"  required>
+						<label>CPF</label><br/>
+						<div class="underline"></div>
+					</div>
+			</div>
+
+			<div class="main">
+				<h1>Endereço</h1>
+				<p>Informe seu endereço residencial abaixo.</p>
+				<p>Para os campos que possuírem símbolos, digite somente números.</p>
+					<div class="input-data">
+						<input type="text" name="logradouro" placeholder="Ex.: Av. Boa Viagem" required>
+						<label>Logradouro</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" name="numero" placeholder="Ex.: 700" required>
+						<label>Número</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" id="CEPInput" name="cep" maxlength="8" placeholder="Ex.: 51020-001" oninput="criaMascara('CEP')" required>
+						<label>CEP</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" name="pais" placeholder="Ex.: Brasil" required>
+						<label>País</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" name="estado" placeholder="Ex.: Pernambuco" required>
+						<label>Estado</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" name="cidade" placeholder="Ex.: Recife" required>
+						<label>Cidade</label><br/>
+						<div class="underline"></div>
+
+						<input type="text" name="bairro" placeholder="Ex.: Boa Viagem" required>
+						<label>Bairro</label><br/>
+						<div class="underline"></div>
+					</div>
+			</div>
+
+			<button class="cta">
+			 	<span>OK</span>
+			</button>
+
+		</form>
+		<script>
+			function criaMascara(mascaraInput) {
+				const maximoInput = document.getElementById(`${mascaraInput}Input`).maxLength;
+				let valorInput = document.getElementById(`${mascaraInput}Input`).value;
+				let valorSemPonto = document.getElementById(`${mascaraInput}Input`).value.replace(/([^0-9])+/g, "");
+				const mascaras = {
+					CPF: valorInput.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"),
+				    Celular: valorInput.replace(/[^\d]/g, "").replace(/^(\d{2})(\d{5})(\d{4})/, "$1 $2-$3"),
+				    CEP: valorInput.replace(/[^\d]/g, "").replace(/(\d{5})(\d{3})/, "$1-$2"),
+				    CNJ: valorInput.replace(/[^\d]/g, "").replace(/(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{4})/, "$1-$2.$3.$4.$5.$6"),
+				  };
+
+				  valorInput.length === maximoInput ? document.getElementById(`${mascaraInput}Input`).value = mascaras[mascaraInput]
+				 : document.getElementById(`${mascaraInput}Input`).value = valorSemPonto;
+			};
+		</script>
+	</main>
+	<footer>
+		<h2>&copy;<script>document.write(new Date().getFullYear());</script> Copyright Reserved.</h2>
+		<p>Coder and Designer David Silva</p>
+	</footer>
+</body>
+</html>
